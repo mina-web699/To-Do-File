@@ -365,16 +365,41 @@ body {
 }
 
 /* ==========================================================================
-   9. Media Queries for Mobile Responsiveness
+   9. Media Queries for Mobile Responsiveness (تحديث الموبايل)
    ========================================================================== */
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 480px) {
   body {
-    padding: 20px 10px;
+    padding: 0; /* إلغاء المسافات الخارجية من الشاشة */
+  }
+
+  .container {
+    max-width: 100%;
+    gap: 0; /* إلغاء الفجوة بين الكارد والفوتر لأن الفوتر هيدخل جوة الهيكل */
   }
 
   .content {
-    padding: 25px 20px;
-    border-radius: 16px;
+    border-radius: 0; /* إلغاء الحواف الدائرية ليملأ أركان الشاشة */
+    min-height: 100vh; /* يجعل الكارد يأخذ طول الشاشة بالكامل 100% */
+    padding: 30px 20px 100px 20px; /* زيادة البادينج السفلي ليعطي مساحة مريحة */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* جعل الفوتر يستقر في نهاية الكارد الأخضر تماماً */
+  .main-footer {
+    margin-top: auto; /* يدفعه لأسفل الشاشة تلقائياً */
+    padding-top: 30px;
+  }
+  footer{
+    background-color: #817f7be0;
+  }
+
+  .main-footer p {
+    color: rgba(255, 255, 255, 0.907); /* تغيير لون خط الفوتر للأبيض الشفاف ليتناسب مع الخلفية الغامقة */
+  }
+
+  .main-footer span {
+    color: var(--gold-accent); /* جعل اسمك بالذهبي الفخم */
   }
 
   .links-of-header {
@@ -388,12 +413,11 @@ body {
     flex: 1;
     text-align: center;
   }
-}
 
-@media (max-width: 480px) {
   .hero-section h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
+  
   .hero-section p {
     font-size: 0.8rem;
   }
