@@ -29,10 +29,10 @@ body {
   background-color: var(--off-white);
   color: var(--text-dark);
   min-height: 100vh;
+  padding: 40px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 /* ==========================================================================
@@ -40,9 +40,10 @@ body {
    ========================================================================== */
 .container {
   width: 100%;
+  max-width: 550px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* يجعل الفوتر ينزل تحت الكارد بسلاسة */
+  gap: 25px; /* المسافة بين كارد المهام والفوتر بالأسفل */
 }
 
 .content {
@@ -50,7 +51,6 @@ body {
   background-image: linear-gradient(145deg, var(--dark-green), var(--card-bg));
   color: var(--text-light);
   width: 100%;
-  max-width: 550px;
   padding: 35px 30px;
   border-radius: 24px;
   box-shadow: var(--shadow);
@@ -76,327 +76,7 @@ body {
 }
 
 /* ==========================================================================
-   3. Header Filters (.links-of-header)
-   ========================================================================== */
-.links-of-header {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid rgba(227, 218, 201, 0.1);
-  padding-bottom: 15px;
-}
-
-.filter-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: rgba(227, 218, 201, 0.5);
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.filter-btn:hover {
-  color: var(--gold-accent);
-}
-
-.filter-btn.active {
-  background-color: rgba(229, 198, 144, 0.12);
-  border-color: rgba(229, 198, 144, 0.3);
-  color: var(--gold-accent);
-}
-
-/* ==========================================================================
-   4. Inputs Section (.inputs-section)
-   ========================================================================== */
-.inputs-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
-}
-
-#task-input {
-  flex: 1;
-  background-color: rgba(227, 218, 201, 0.06);
-  border: 1px solid rgba(227, 218, 201, 0.2);
-  padding: 14px 16px;
-  border-radius: 12px;
-  color: var(--text-light);
-  font-size: 0.95rem;
-  outline: none;
-  transition: var(--transition);
-  max-width: 450px;
-}
-
-#task-input:focus {
-  border-color: var(--gold-accent);
-  background-color: rgba(227, 218, 201, 0.12);
-  box-shadow: 0 0 10px rgba(229, 198, 144, 0.05);
-}
-
-#task-input::placeholder {
-  color: rgba(227, 218, 201, 0.35);
-}
-
-#add-task-btn {
-  background-color: var(--gold-accent);
-  color: var(--text-dark);
-  border: none;
-  padding: 0 22px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: var(--transition);
-  padding: 14px 22px;
-  min-width: 100px;
-  flex-grow: 0.5;
-}
-
-#add-task-btn:hover {
-  background-color: var(--gold-hover);
-  transform: translateY(-1px);
-}
-
-#add-task-btn:active {
-  transform: translateY(1px);
-}
-
-/* ==========================================================================
-   5. Body & Tasks Container (.body & .tasks)
-   ========================================================================== */
-.body h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--gold-accent);
-  margin-bottom: 15px;
-  letter-spacing: 0.5px;
-}
-
-.tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 320px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-/* سكرول بار ناعم ومتناسق */
-.tasks::-webkit-scrollbar {
-  width: 4px;
-}
-.tasks::-webkit-scrollbar-thumb {
-  background: rgba(227, 218, 201, 0.15);
-  border-radius: 10px;
-}
-
-/* ==========================================================================
-   6. Dynamic Task Items (سيتم إنشاؤها بالـ JavaScript)
-   ========================================================================== */
-.task-item {
-  background-color: rgba(227, 218, 201, 0.04);
-  border: 1px solid rgba(227, 218, 201, 0.08);
-  padding: 14px 16px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: var(--transition);
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.task-item:hover {
-  background-color: rgba(227, 218, 201, 0.07);
-  border-color: rgba(229, 198, 144, 0.25);
-  transform: translateY(-1px);
-}
-
-.task-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-/* التشيك بوكس الفخم */
-.custom-checkbox {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--gold-accent);
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.task-item.completed .custom-checkbox {
-  background-color: var(--gold-accent);
-}
-
-.custom-checkbox::after {
-  content: "✓";
-  font-size: 11px;
-  color: var(--text-dark);
-  font-weight: bold;
-  display: none;
-}
-
-.task-item.completed .custom-checkbox::after {
-  display: block;
-}
-
-.task-text {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  transition: var(--transition);
-  word-break: break-word;
-}
-
-.task-item.completed .task-text {
-  color: rgba(227, 218, 201, 0.35);
-  text-decoration: line-through;
-}
-
-/* زر الحذف */
-.delete-btn {
-  background: transparent;
-  border: none;
-  color: rgba(227, 218, 201, 0.4);
-  cursor: pointer;
-  font-size: 1.3rem;
-  line-height: 1;
-  padding: 2px 6px;
-  border-radius: 6px;
-  transition: var(--transition);
-}
-
-.delete-btn:hover {
-  color: #ff6b6b;
-  background-color: rgba(255, 107, 107, 0.1);
-}
-
-/* أنيميشن دخول العناصر */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* ==========================================================================
-   7. Media Queries for Mobile Responsiveness
-   ========================================================================== */
-@media screen and (max-width: 780px) {
-  body {
-    padding: 10px;
-  }
-
-  .content {
-    padding: 25px 20px;
-    border-radius: 16px;
-  }
-
-  .links-of-header {
-    justify-content: space-between;
-    gap: 4px;
-  }
-
-  .filter-btn {
-    padding: 6px 10px;
-    font-size: 0.75rem;
-    flex: 1;
-    text-align: center;
-  }
-
-  .inputs-section {
-    flex-direction: column;
-  }
-
-  #add-task-btn {
-    width: 100%;
-    padding: 14px;
-  }
-}
-
-/* ==========================================================================
-   8. Notes Section Styles
-   ========================================================================== */
-.notes {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 250px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-/* سكرول بار الملاحظات */
-.notes::-webkit-scrollbar {
-  width: 4px;
-}
-.notes::-webkit-scrollbar-thumb {
-  background: rgba(227, 218, 201, 0.15);
-  border-radius: 10px;
-}
-
-/* كارد الملاحظة الفردي */
-.note-item {
-  background-color: rgba(
-    229,
-    198,
-    144,
-    0.03
-  ); /* تلميحة ذهبية خفيفة للملاحظات */
-  border: 1px solid rgba(229, 198, 144, 0.1);
-  padding: 14px 16px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: var(--transition);
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.note-item:hover {
-  background-color: rgba(229, 198, 144, 0.06);
-  border-color: var(--gold-accent);
-  transform: translateY(-1px);
-}
-
-.note-text {
-  font-size: 0.95rem;
-  color: #e3dac9e0;
-  word-break: break-word;
-  flex: 1;
-}
-
-#note-input {
-  background-color: rgba(227, 218, 201, 0.06);
-  border: 1px solid rgba(227, 218, 201, 0.2);
-  padding: 14px 16px;
-  border-radius: 12px;
-  color: var(--text-light);
-  font-size: 0.95rem;
-  outline: none;
-  font-family: inherit;
-  transition: var(--transition);
-}
-
-#note-input:focus {
-  border-color: var(--gold-accent);
-  background-color: rgba(227, 218, 201, 0.12);
-}
-/* ==========================================================================
-   9. Hero Section & Logo Styles
+   3. Hero Section & Logo Styles
    ========================================================================== */
 .hero-section {
   text-align: center;
@@ -440,13 +120,234 @@ body {
 }
 
 /* ==========================================================================
-   10. Main Footer Styles
+   4. Header Filters (.links-of-header)
    ========================================================================== */
-.container {
-  flex-direction: column; /* تعديل الحاوية لتجعل الفوتر ينزل تحت الكارد */
-  gap: 20px;
+.links-of-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(227, 218, 201, 0.1);
+  padding-bottom: 15px;
 }
 
+.filter-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(227, 218, 201, 0.5);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  color: var(--gold-accent);
+}
+
+.filter-btn.active {
+  background-color: rgba(229, 198, 144, 0.12);
+  border-color: rgba(229, 198, 144, 0.3);
+  color: var(--gold-accent);
+}
+
+/* ==========================================================================
+   5. Inputs Section (.inputs-section)
+   ========================================================================== */
+.inputs-section {
+  display: flex;
+  flex-direction: column; /* جعل الـ Inputs تأخذ العرض الكامل بشكل مريح */
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+#task-input, #note-input {
+  width: 100%;
+  background-color: rgba(227, 218, 201, 0.06);
+  border: 1px solid rgba(227, 218, 201, 0.2);
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+#task-input:focus, #note-input:focus {
+  border-color: var(--gold-accent);
+  background-color: rgba(227, 218, 201, 0.12);
+  box-shadow: 0 0 10px rgba(229, 198, 144, 0.05);
+}
+
+#task-input::placeholder, #note-input::placeholder {
+  color: rgba(227, 218, 201, 0.35);
+}
+
+#add-task-btn {
+  background-color: var(--gold-accent);
+  color: var(--text-dark);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 14px 22px;
+  width: 100%;
+}
+
+#add-task-btn:hover {
+  background-color: var(--gold-hover);
+  transform: translateY(-1px);
+}
+
+#add-task-btn:active {
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   6. Body & Lists Container (.body, .tasks, .notes)
+   ========================================================================== */
+.body h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gold-accent);
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.tasks, .notes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* سكرول بار ناعم ومتناسق */
+.tasks::-webkit-scrollbar, .notes::-webkit-scrollbar {
+  width: 4px;
+}
+.tasks::-webkit-scrollbar-thumb, .notes::-webkit-scrollbar-thumb {
+  background: rgba(227, 218, 201, 0.15);
+  border-radius: 10px;
+}
+
+/* ==========================================================================
+   7. Dynamic Items (Tasks & Notes)
+   ========================================================================== */
+.task-item, .note-item {
+  background-color: rgba(227, 218, 201, 0.04);
+  border: 1px solid rgba(227, 218, 201, 0.08);
+  padding: 14px 16px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.note-item {
+  background-color: rgba(229, 198, 144, 0.03); /* تلميحة ذهبية خفيفة للملاحظات */
+  border: 1px solid rgba(229, 198, 144, 0.1);
+}
+
+.task-item:hover, .note-item:hover {
+  background-color: rgba(227, 218, 201, 0.07);
+  border-color: rgba(229, 198, 144, 0.25);
+  transform: translateY(-1px);
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+/* التشيك بوكس الفخم */
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gold-accent);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.task-item.completed .custom-checkbox {
+  background-color: var(--gold-accent);
+}
+
+.custom-checkbox::after {
+  content: "✓";
+  font-size: 11px;
+  color: var(--text-dark);
+  font-weight: bold;
+  display: none;
+}
+
+.task-item.completed .custom-checkbox::after {
+  display: block;
+}
+
+.task-text, .note-text {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  transition: var(--transition);
+  word-break: break-word;
+}
+
+.note-text {
+  color: #e3dac9e0;
+  flex: 1;
+}
+
+.task-item.completed .task-text {
+  color: rgba(227, 218, 201, 0.35);
+  text-decoration: line-through;
+}
+
+/* زر الحذف */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: rgba(227, 218, 201, 0.4);
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.delete-btn:hover {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* أنيميشن دخول العناصر */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   8. Main Footer Styles
+   ========================================================================== */
 .main-footer {
   text-align: center;
   padding: 10px 0;
@@ -454,7 +355,7 @@ body {
 
 .main-footer p {
   font-size: 0.8rem;
-  color: rgba(24, 54, 48, 0.6); /* لون متناسق مع البيج */
+  color: rgba(24, 54, 48, 0.7); /* يظهر بوضوح على الخلفية البيج */
   font-weight: 500;
 }
 
@@ -463,7 +364,32 @@ body {
   font-weight: 700;
 }
 
-/* تحديث صغير للـ Media Query ليتناسب مع الـ Hero */
+/* ==========================================================================
+   9. Media Queries for Mobile Responsiveness
+   ========================================================================== */
+@media screen and (max-width: 780px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .content {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+
+  .links-of-header {
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .filter-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    flex: 1;
+    text-align: center;
+  }
+}
+
 @media (max-width: 480px) {
   .hero-section h1 {
     font-size: 1.5rem;
