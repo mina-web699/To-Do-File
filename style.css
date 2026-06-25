@@ -10,12 +10,11 @@
 }
 
 :root {
-  /* باليتة الألوان الفاخرة المستوحاة من الصورة */
-  --dark-green: #183630; /* الأخضر الغامق الأساسي للـ Content */
-  --card-bg: #112723; /* تدرج عميق ومميز */
-  --off-white: #e3dac9; /* البيج الفاتح لخلفية الصفحة بالكامل */
-  --gold-accent: #e5c690; /* الذهبي الملكي للأزرار والـ Active */
-  --gold-hover: #d4b37b; /* درجة أغمق قليلاً عند التمرير */
+  --dark-green: #183630;
+  --card-bg: #112723; 
+  --off-white: #e3dac9; 
+  --gold-accent: #e5c690; 
+  --gold-hover: #d4b37b; 
 
   /* نصوص وظلال */
   --text-light: #e3dac9;
@@ -42,8 +41,8 @@ body {
   width: 100%;
   max-width: 550px;
   display: flex;
-  flex-direction: column; /* يجعل الفوتر ينزل تحت الكارد بسلاسة */
-  gap: 25px; /* المسافة بين كارد المهام والفوتر بالأسفل */
+  flex-direction: column;
+  gap: 25px; 
 }
 
 .content {
@@ -157,7 +156,7 @@ body {
    ========================================================================== */
 .inputs-section {
   display: flex;
-  flex-direction: column; /* جعل الـ Inputs تأخذ العرض الكامل بشكل مريح */
+  flex-direction: column; 
   gap: 12px;
   margin-bottom: 30px;
 }
@@ -355,7 +354,7 @@ body {
 
 .main-footer p {
   font-size: 0.8rem;
-  color: rgba(24, 54, 48, 0.7); /* يظهر بوضوح على الخلفية البيج */
+  color: rgba(24, 54, 48, 0.7);
   font-weight: 500;
 }
 
@@ -369,25 +368,25 @@ body {
    ========================================================================== */
 @media screen and (max-width: 480px) {
   body {
-    padding: 0; /* إلغاء المسافات الخارجية من الشاشة */
+    padding: 0;
   }
 
   .container {
     max-width: 100%;
-    gap: 0; /* إلغاء الفجوة بين الكارد والفوتر لأن الفوتر هيدخل جوة الهيكل */
+    gap: 0; 
   }
 
   .content {
-    border-radius: 0; /* إلغاء الحواف الدائرية ليملأ أركان الشاشة */
-    min-height: 100vh; /* يجعل الكارد يأخذ طول الشاشة بالكامل 100% */
-    padding: 30px 20px 100px 20px; /* زيادة البادينج السفلي ليعطي مساحة مريحة */
+    border-radius: 0;
+    min-height: 100vh; 
+    padding: 30px 20px 100px 20px; 
     display: flex;
     flex-direction: column;
   }
 
-  /* جعل الفوتر يستقر في نهاية الكارد الأخضر تماماً */
+
   .main-footer {
-    margin-top: auto; /* يدفعه لأسفل الشاشة تلقائياً */
+    margin-top: auto; 
     padding-top: 30px;
   }
   footer{
@@ -395,11 +394,11 @@ body {
   }
 
   .main-footer p {
-    color: rgba(255, 255, 255, 0.907); /* تغيير لون خط الفوتر للأبيض الشفاف ليتناسب مع الخلفية الغامقة */
+    color: rgba(255, 255, 255, 0.907);
   }
 
   .main-footer span {
-    color: var(--gold-accent); /* جعل اسمك بالذهبي الفخم */
+    color: var(--gold-accent);
   }
 
   .links-of-header {

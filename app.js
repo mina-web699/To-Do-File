@@ -14,7 +14,7 @@ const inputText = document.getElementById("task-input");
 const btnAll = document.getElementById("all-tasks");
 const btnPending = document.getElementById("pending-tasks");
 const btnCompleted = document.getElementById("completed-tasks");
-const btnNotesTab = document.getElementById("notes-tab"); // زرار الملاحظات الجديد
+const btnNotesTab = document.getElementById("notes-tab"); 
 
 // الحاويات الكبيرة (الWrapper الخاص بكل صفحة)
 const tasksWrapper = document.getElementById("tasks-wrapper");
@@ -68,8 +68,8 @@ function updateFilterButtons(activeButton) {
   activeButton.classList.add("active");
 }
 
-// دالة سحرية للتحكم في ظهور واختفاء الصفحات وتغيير شكل الـ Input
-// أضف السحب الخاص بالـ textarea فوق خالص مع المتغيرات:
+
+
 const noteInput = document.getElementById("note-input");
 
 function switchPage(pageName) {
@@ -77,15 +77,15 @@ function switchPage(pageName) {
     tasksWrapper.style.display = "block";
     notesWrapper.style.display = "none";
 
-    inputText.style.display = "block"; // إظهار إنبوت المهام
-    noteInput.style.display = "none"; // إخفاء منطقة الملاحظات
+    inputText.style.display = "block"; 
+    noteInput.style.display = "none";
     btnAdd.innerText = "Add Task";
   } else if (pageName === "notes") {
     tasksWrapper.style.display = "none";
     notesWrapper.style.display = "block";
 
-    inputText.style.display = "none"; // إخفاء إنبوت المهام
-    noteInput.style.display = "block"; // إظهار منطقة الملاحظات الكبيرة
+    inputText.style.display = "none"; 
+    noteInput.style.display = "block"; 
     btnAdd.innerText = "Add Note";
   }
 }
@@ -99,7 +99,7 @@ btnAdd.addEventListener("click", () => {
     if (noteInput.value.trim() !== "") {
       const newNote = {
         id: Date.now(),
-        text: noteInput.value, // تم التصحيح: القراءة من التيكست إريا
+        text: noteInput.value, 
       };
       noteData.push(newNote);
       noteInput.value = ""; // تفريغ مساحة الكتابة
@@ -117,7 +117,7 @@ btnAdd.addEventListener("click", () => {
         completed: false,
       };
       taskData.push(newTask);
-      inputText.value = ""; // تفريغ إنبوت المهام
+      inputText.value = "";
       renderTask();
       inputText.focus();
     }

@@ -1,7 +1,7 @@
-const CACHE_NAME = "todo-notes-v2"; // رفعنا الإصدار لـ v2 عشان نجدد الكاش
+const CACHE_NAME = "todo-notes-v2"; 
 const ASSETS = ["./", "./index.html", "./style.css", "./app.js"];
 
-// 1. مرحلة التثبيت: نجبره يشتغل فوراً بدون انتظار skipWaiting
+
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches
@@ -9,11 +9,11 @@ self.addEventListener("install", (e) => {
       .then((cache) => {
         return cache.addAll(ASSETS);
       })
-      .then(() => self.skipWaiting()), // 🔥 السر هنا: تفعيل فوري
+      .then(() => self.skipWaiting()), 
   );
 });
 
-// 2. مرحلة التفعيل: تنظيف أي كاش قديم تلقائياً
+
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches
@@ -23,16 +23,16 @@ self.addEventListener("activate", (e) => {
           keys.map((key) => {
             if (key !== CACHE_NAME) {
               console.log("Removing old cache:", key);
-              return caches.delete(key); // مسح الكاش القديم
+              return caches.delete(key); 
             }
           }),
         );
       })
-      .then(() => self.clients.claim()), // يخلي الـ SW يتحكم في الصفحة فوراً
+      .then(() => self.clients.claim()), 
   );
 });
 
-// 3. مرحلة جلب البيانات (كما هي)
+
 self.addEventListener("fetch", (e) => {
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {
